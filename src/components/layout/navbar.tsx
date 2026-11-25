@@ -13,11 +13,13 @@ export function Navbar() {
   const isScrolled = useScroll();
   const pathname = usePathname();
 
-  function handleNavClick(e: MouseEvent<HTMLAnchorElement>, href: string) {
-    if (href.startsWith("/#") && pathname === "/") {
+  function handleNavClick(
+    e: MouseEvent<HTMLAnchorElement>,
+    item: { href: string; targetId?: string }
+  ) {
+    if (pathname === "/" && item.targetId) {
       e.preventDefault();
-      const targetId = href.replace("/#", "");
-      const element = document.getElementById(targetId);
+      const element = document.getElementById(item.targetId);
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
@@ -41,8 +43,8 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <Link
-          href="/#hero"
-          onClick={(e) => handleNavClick(e, "/#hero")}
+          href="/"
+          onClick={(e) => handleNavClick(e, { href: "/", targetId: "hero" })}
           className="text-base font-semibold tracking-tight"
         >
           {siteConfig.name}
@@ -53,7 +55,7 @@ export function Navbar() {
             <Link
               key={item.href}
               href={item.href}
-              onClick={(e) => handleNavClick(e, item.href)}
+              onClick={(e) => handleNavClick(e, item)}
               className="text-sm text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
             >
               {item.label}

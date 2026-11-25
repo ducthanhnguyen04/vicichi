@@ -2,6 +2,8 @@
 
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
+import { GiSpiderMask } from "react-icons/gi";
+import { IoManOutline } from "react-icons/io5";
 
 function subscribe(callback: () => void) {
   const observer = new MutationObserver(callback);
@@ -44,7 +46,11 @@ export function ThemeToggle() {
       aria-label="Toggle color theme"
       suppressHydrationWarning
     >
-      {isDark ? "Light" : "Dark"}
+      {isDark ? (
+        <IoManOutline className="h-5 w-5" />
+      ) : (
+        <GiSpiderMask className="h-5 w-5 text-red-500" />
+      )}
     </Button>
   );
 }

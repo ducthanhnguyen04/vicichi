@@ -11,12 +11,14 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  function handleNavClick(e: MouseEvent<HTMLAnchorElement>, href: string) {
+  function handleNavClick(
+    e: MouseEvent<HTMLAnchorElement>,
+    item: { href: string; targetId?: string }
+  ) {
     setOpen(false);
-    if (href.startsWith("/#") && pathname === "/") {
+    if (pathname === "/" && item.targetId) {
       e.preventDefault();
-      const targetId = href.replace("/#", "");
-      const element = document.getElementById(targetId);
+      const element = document.getElementById(item.targetId);
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
@@ -48,7 +50,7 @@ export function MobileMenu() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
+                onClick={(e) => handleNavClick(e, item)}
                 className="text-sm font-medium text-zinc-700 transition-colors hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50"
               >
                 {item.label}

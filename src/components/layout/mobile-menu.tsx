@@ -42,7 +42,7 @@ export function MobileMenu() {
         aria-label="Toggle navigation menu"
         onClick={() => setOpen((prev) => !prev)}
       >
-        {open ? <MdClose /> : <FiMenu />}
+        {open ? <MdClose size={20}/> : <FiMenu size={20}/>}
       </Button>
 
       {open ? (

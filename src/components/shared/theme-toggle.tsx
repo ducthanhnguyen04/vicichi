@@ -47,9 +47,9 @@ export function ThemeToggle() {
       suppressHydrationWarning
     >
       {isDark ? (
-        <IoManOutline className="h-5 w-5" />
+        <IoManOutline className="h-5 w-5 cursor-pointer" />
       ) : (
-        <GiSpiderMask className="h-5 w-5 text-red-500" />
+        <GiSpiderMask className="h-5 w-5 text-red-500 cursor-pointer" />
       )}
     </Button>
   );

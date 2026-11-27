@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
+import { FiMenu } from "react-icons/fi";
+import { MdClose } from "react-icons/md";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -40,7 +42,7 @@ export function MobileMenu() {
         aria-label="Toggle navigation menu"
         onClick={() => setOpen((prev) => !prev)}
       >
-        {open ? "Close" : "Menu"}
+        {open ? <MdClose /> : <FiMenu />}
       </Button>
 
       {open ? (
